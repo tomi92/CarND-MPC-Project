@@ -1,0 +1,18 @@
+Model:
+State: x, y, psi, v, cte, epsi
+Actuators: delta (steering_angle), a (throttle)
+Update equations: The equations from the lesson:
+https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/338b458f-7ebf-449c-9ad1-611eb933b076/concepts/d26b8460-653f-4479-bc24-68bb62c146ba
+
+Timestep Length and Elapsed Duration:
+N = 25
+dt = 0.1
+I choose dt to be precise enough, but i stopped at 0.1, 
+because I can only send actuators to the simulator every 0.1 second.
+I choose N to be big enough to cover a whole "curve", but not too big, 
+so it doesn't take too much time to calculate the local optimum.
+
+A 3rd degree polynomial is fitted to waypoints.
+
+I deal with latency by predicting the state after 0.1 sec and using that state in the optimization.
+(MPC.cpp#127:135)
